@@ -1,0 +1,135 @@
+	<!DOCTYPE html>
+	<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>Restaurant Menu</title>
+	    <!-- Add Bootstrap CDN links -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+	
+	<body class="container mt-5">
+	    <div class="jumbotron text-center">
+	        <h1 class="display-4">Restaurant Menu</h1>
+	        <p class="lead">Welcome to our restaurant menu management system.</p>
+	    </div>
+	
+	    <div class="row">
+	        <div class="col-md-6">
+	            <div class="card">
+	                <div class="card-header">
+	                    <h3>Add Menu Item</h3>
+	                </div>
+	                <div class="card-body">
+	                    <form action="/mymenu/addNewProduct" method="post">
+	                        <div class="form-group">
+	                            <label for="name">Name:</label>
+	                            <input type="text" class="form-control" id="name" name="name" required>
+	                        </div>
+	
+	                        <div class="form-group">
+	                            <label for="status">Availability:</label>
+	                            <input type="text" placeholder="0 for not available 1 for available" class="form-control" id="status" name="status" required >
+	                        </div>
+	
+	                        <div class="form-group">
+	                            <label for="price">Price:</label>
+	                            <input type="number" class="form-control" id="price" name="price" required>
+	                        </div>
+	
+	                        <button type="submit" class="btn btn-primary">Add Menu Item</button>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	
+	        <div class="col-md-6">
+	            <div class="card">
+	                <div class="card-header">
+	                    <h3>Update or Delete Menu Item</h3>
+	                </div>
+	                <div class="card-body">
+	                    <div class="btn-group" role="group" aria-label="Update or Delete">
+	                        <button type="button" class="btn btn-secondary" data-toggle="collapse" href="#updateForm" role="button" aria-expanded="false" aria-controls="updateForm">
+	                            Update
+	                        </button>
+	                        <button type="button" class="btn btn-secondary" data-toggle="collapse" href="#deleteForm" role="button" aria-expanded="false" aria-controls="deleteForm">
+	                            Delete
+	                        </button>
+	                    </div>
+	
+	                    <div class="collapse mt-3" id="updateForm">
+	                        <form action="/mymenu/update" method="post">
+	                            <div class="form-group">
+	                                <label for="productNameUpdate">Product Name:</label>
+	                                <select id="productNameUpdate" name="productNameUpdate" class="form-control" required>
+	                                    <option th:each="product : ${products}" th:value="${product.name}" th:text="${product.name}"></option>
+	                                </select>
+	                            </div>
+	
+	                            <div class="form-group">
+	                                <label for="nameUpdate">Name:</label>
+	                                <input type="text" class="form-control" id="nameUpdate" name="nameUpdate">
+	                            </div>
+	
+	                            <div class="form-group">
+	                                <label for="statusUpdate">Availability:</label>
+	                                <input type="text" placeholder="0 for not available 1 for available" class="form-control" id="statusUpdate" name="statusUpdate">
+	                            </div>
+	
+	                            <div class="form-group">
+	                                <label for="priceUpdate">New Price:</label>
+	                                <input type="number" class="form-control" id="priceUpdate" name="priceUpdate">
+	                            </div>
+	
+	                            <button type="submit" class="btn btn-primary">Update Menu Item</button>
+	                        </form>
+	                    </div>
+	
+	                    <div class="collapse mt-3" id="deleteForm">
+	                        <form action="/mymenu/delete" method="post">
+	                            <div class="form-group">
+	                                <label for="productNameDelete">Product Name:</label>
+	                                <select id="productNameDelete" name="productNameDelete" class="form-control" required>
+	                                    <option th:each="product : ${products}" th:value="${product.name}" th:text="${product.name}"></option>
+	                                </select>
+	                            </div>
+	
+	                            <button type="submit" class="btn btn-danger">Delete Menu Item</button>
+	                        </form>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	    <div class="mt-5">
+	        <h3>Product List</h3>
+	        <table class="table">
+	            <thead>
+	                <tr>
+	                    <th>Name</th>
+	                    <th>Status</th>
+	                    <th>Price</th>
+	                    <th>Product ID</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <tr th:each="product : ${products}">
+	                    <td th:text="${product.name}"></td>
+	                    <td th:text="${product.status}"></td>
+	                    <td th:text="${product.price}"></td>
+	                    <td th:text="${product.productId}"></td>
+	                </tr>
+	            </tbody>
+	        </table>
+	    </div>
+	
+	    <!-- Add Bootstrap JS and Popper.js CDN links -->
+	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></script>
+	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</body>
+	</html>
