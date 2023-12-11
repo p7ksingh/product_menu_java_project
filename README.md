@@ -516,13 +516,7 @@ Once you have finished coding, run your Spring Boot application and access the w
 13. Conclusion:
 Congratulations! You’ve successfully built a Restaurant Menu Management System using Spring Boot. This project demonstrates the application of Spring Boot concepts in a practical scenario. Feel free to explore and expand upon this project as you continue your Spring Boot learning journey.
 
-14. Need Help or Have Questions?
 
-If you encounter any difficulties or have questions about the Restaurant Menu Management System you’ve built with Spring Boot, feel free to reach out. I’m here to help! Connect with me on:
-
-- GitHub: https://github.com/JatinNavani/Menu
-- LinkedIn:https://www.linkedin.com/in/jatinnavani/
-- Twitter:https://twitter.com/NavaniJatin
 
 I appreciate your dedication to learning Spring Boot, and I’m excited to assist you on your coding journey. Happy coding!
 
